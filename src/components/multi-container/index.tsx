@@ -44,9 +44,9 @@ function MultiContainers() {
         <div className="flex w-fit flex-col gap-4 sm:flex-col md:flex-row">
           {dropContainerIDs.map((con_id) => (
             <Droppable
-              id={con_id}
+              col_id={con_id}
               key={con_id}
-              dragId={con_id === currentContainerID ? "drag-1" : ""}
+              isPresent={con_id === currentContainerID}
             />
           ))}
         </div>
