@@ -10,7 +10,7 @@ export const Item = forwardRef<HTMLButtonElement, ItemProps>(
         ref={ref}
         {...props}
         className={cn(
-          "h-24 w-24 cursor-grab rounded-2xl bg-white text-sm",
+          "bg-background h-24 w-24 cursor-grab rounded-2xl text-sm",
           className,
         )}
       >

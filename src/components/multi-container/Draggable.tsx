@@ -12,7 +12,7 @@ export function Draggable({ id }: { id: UniqueIdentifier }) {
     transform: CSS.Translate.toString(transform),
   };
 
-  if (isDragging) return <Item className="opacity-20">Drag Me</Item>;
+  if (isDragging) return <Item className="opacity-40">Drag Me</Item>;
 
   return (
     <Item

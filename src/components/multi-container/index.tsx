@@ -38,31 +38,29 @@ function MultiContainers() {
   };
 
   return (
-    <div className="flex h-screen max-h-screen items-center justify-center bg-neutral-800">
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        {/* Droppable Containers */}
-        <div className="flex w-fit flex-col gap-4 sm:flex-col md:flex-row">
-          {dropContainerIDs.map((con_id) => (
-            <Droppable
-              col_id={con_id}
-              key={con_id}
-              isPresent={con_id === currentContainerID}
-            />
-          ))}
-        </div>
-        {/* overlay for animation and add the over item with dragging element */}
-        {createPortal(
-          <DragOverlay
-            dropAnimation={{
-              duration: 500,
-            }}
-          >
-            <Item>Drag Me</Item>
-          </DragOverlay>,
-          document.body,
-        )}
-      </DndContext>
-    </div>
+    <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+      {/* Droppable Containers */}
+      <div className="flex w-fit flex-col gap-4 sm:flex-col md:flex-row">
+        {dropContainerIDs.map((con_id) => (
+          <Droppable
+            col_id={con_id}
+            key={con_id}
+            isPresent={con_id === currentContainerID}
+          />
+        ))}
+      </div>
+      {/* overlay for animation and add the over item with dragging element */}
+      {createPortal(
+        <DragOverlay
+          dropAnimation={{
+            duration: 500,
+          }}
+        >
+          <Item>Drag Me</Item>
+        </DragOverlay>,
+        document.body,
+      )}
+    </DndContext>
   );
 }
 
