@@ -1,5 +1,6 @@
 import { UniqueIdentifier, useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import { Item } from "./Item";
 
 export function Draggable({ id }: { id: UniqueIdentifier }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
@@ -11,22 +12,17 @@ export function Draggable({ id }: { id: UniqueIdentifier }) {
     transform: CSS.Translate.toString(transform),
   };
 
-  if (isDragging)
-    return (
-      <button className="w-24 h-24 bg-white opacity-20 rounded-2xl text-sm">
-        Drag Me
-      </button>
-    );
+  if (isDragging) return <Item className="opacity-20">Drag Me</Item>;
 
   return (
-    <button
+    <Item
       ref={setNodeRef}
       style={style}
       {...listeners}
       {...attributes}
-      className="w-24 h-24 bg-white rounded-2xl text-sm cursor-grab"
+      className="cursor-grab"
     >
       Drag Me
-    </button>
+    </Item>
   );
 }

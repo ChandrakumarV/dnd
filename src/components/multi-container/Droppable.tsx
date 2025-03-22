@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { UniqueIdentifier, useDroppable } from "@dnd-kit/core";
 import { Draggable } from "./Draggable";
+import { Item } from "./Item";
 
 export function Droppable({
   id,
@@ -15,26 +16,24 @@ export function Droppable({
   });
 
   return (
-    <div
+    <section
       ref={setNodeRef}
       className={cn(
-        "w-39 h-44 mb-4 bg-neutral-600 flex flex-col rounded-2xl overflow-hidden",
+        "mb-4 flex h-44 w-39 flex-col overflow-hidden rounded-2xl bg-neutral-600",
         {
           "bg-neutral-500/50": isOver,
-        }
+        },
       )}
     >
-      <div className="w-full bg-amber-400 p-1 pl-4 text-center text-white font-bold py-2">
+      <header className="w-full bg-amber-400 p-1 py-2 pl-4 text-center font-bold text-white">
         {id}
-      </div>
-      <div className="p-2 flex items-center justify-center h-full">
+      </header>
+      <main className="flex h-full items-center justify-center p-2">
         {dragId ? <Draggable id={dragId} /> : ""}
         {active?.id !== dragId && over?.id === id && (
-          <button className="w-24 h-24 bg-white opacity-50 rounded-2xl text-sm">
-            Drag Me
-          </button>
+          <Item className="opacity-40">Drag Me</Item>
         )}
-      </div>
-    </div>
+      </main>
+    </section>
   );
 }
