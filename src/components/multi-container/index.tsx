@@ -38,7 +38,7 @@ function MultiContainers() {
   };
 
   return (
-    <div className="flex h-screen max-h-screen items-center justify-center bg-neutral-700">
+    <div className="flex h-screen max-h-screen items-center justify-center bg-neutral-800">
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         {/* Droppable Containers */}
         <div className="flex w-fit flex-col gap-4 sm:flex-col md:flex-row">

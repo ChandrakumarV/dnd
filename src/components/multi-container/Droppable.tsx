@@ -12,7 +12,7 @@ export function Droppable({
   col_id: UniqueIdentifier;
   isPresent: boolean;
 }) {
-  const { isOver, active, over, setNodeRef } = useDroppable({
+  const { active, over, setNodeRef } = useDroppable({
     id: col_id,
     data: {},
   });
@@ -24,10 +24,7 @@ export function Droppable({
     <section
       ref={setNodeRef}
       className={cn(
-        "flex flex-col overflow-hidden rounded-2xl bg-neutral-600",
-        {
-          "bg-neutral-500/50": isOver,
-        },
+        "flex flex-col overflow-hidden rounded-2xl bg-neutral-700/50",
       )}
     >
       <header className="w-full bg-amber-400 p-1 py-2 pl-4 text-center font-bold text-white">
@@ -38,7 +35,7 @@ export function Droppable({
         {isPresent ? <Draggable id={dragItemID} /> : ""}
         {/* item present while over (only show when not exist) */}
         {active?.id !== dragId && over?.id === col_id && (
-          <Item className="opacity-40">Drag Me</Item>
+          <Item className="opacity-10">Drag Me</Item>
         )}
       </main>
     </section>
