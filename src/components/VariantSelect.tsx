@@ -18,6 +18,10 @@ const value: {
     name: "Multi Container",
     value: "multi-container",
   },
+  {
+    name: "Sorting",
+    value: "sortable",
+  },
 ];
 
 export function SelectVariant({

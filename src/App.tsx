@@ -5,6 +5,7 @@ import { SelectVariant } from "./components/VariantSelect";
 import { ThemeProvider } from "./components/theme-provider";
 import { Variant } from "./type/variant";
 import Simple from "./components/simple";
+import { Sortable } from "./components/sortable";
 
 export default function App() {
   const [variant, setVariant] = useState<Variant>("simple");
@@ -14,6 +15,7 @@ export default function App() {
       <Layout variant={variant} setVariant={setVariant}>
         {variant === "simple" && <Simple />}
         {variant === "multi-container" && <MultiContainers />}
+        {variant === "sortable" && <Sortable />}
       </Layout>
     </ThemeProvider>
   );

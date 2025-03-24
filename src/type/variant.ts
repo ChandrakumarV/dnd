@@ -1,1 +1,1 @@
-export type Variant = "simple" | "multi-container";
+export type Variant = "simple" | "multi-container" | "sortable";
