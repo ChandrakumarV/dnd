@@ -18,14 +18,18 @@ export function SortableItem({ id }: { id: UniqueIdentifier }) {
   };
 
   if (isDragging)
-    return <div className="bg-background px-4 py-2 opacity-30">{id}</div>;
+    return (
+      <div className="bg-background flex h-12 w-32 items-center justify-center border">
+        {id}
+      </div>
+    );
   return (
     <div
       ref={setNodeRef}
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-background px-4 py-2"
+      className="bg-background flex h-12 w-32 items-center justify-center border"
     >
       {id}
     </div>

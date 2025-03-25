@@ -20,6 +20,7 @@ import { SortableItem } from "./SortableItem";
 
 export function Sortable() {
   const [items, setItems] = useState<UniqueIdentifier[]>([1, 2, 3]);
+  const [activeID, setActiveID] = useState<UniqueIdentifier | null>(null);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -32,18 +33,23 @@ export function Sortable() {
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
+      onDragStart={(e) => {
+        setActiveID(e.active.id);
+      }}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((id) => (
-          <SortableItem key={id} id={id} />
-        ))}
+        <div className="flex flex-col">
+          {items.map((id) => (
+            <SortableItem key={id} id={id} />
+          ))}
+        </div>
       </SortableContext>
       <DragOverlay
         dropAnimation={{
           duration: 500,
         }}
       >
-        <SortableItem id={"2"} />
+        {activeID && <SortableItem id={activeID} />}
       </DragOverlay>
     </DndContext>
   );
