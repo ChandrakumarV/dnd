@@ -46,7 +46,7 @@ export function Sortable() {
       </SortableContext>
       <DragOverlay
         dropAnimation={{
-          duration: 500,
+          duration: 1000,
         }}
       >
         {activeID && <SortableItem id={activeID} />}
