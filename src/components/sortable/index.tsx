@@ -1,14 +1,13 @@
-import React, { useState } from "react";
 import {
-  DndContext,
   closestCenter,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
   KeyboardSensor,
   PointerSensor,
+  UniqueIdentifier,
   useSensor,
   useSensors,
-  DragEndEvent,
-  UniqueIdentifier,
-  DragOverlay,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -16,6 +15,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useState } from "react";
 import { SortableItem } from "./SortableItem";
 
 export function Sortable() {
@@ -27,6 +27,19 @@ export function Sortable() {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (active.id !== over?.id) {
+      setItems((items) => {
+        const oldIndex = items.indexOf(active?.id);
+        const newIndex = items.indexOf(over?.id ?? "");
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  }
 
   return (
     <DndContext
@@ -53,17 +66,4 @@ export function Sortable() {
       </DragOverlay>
     </DndContext>
   );
-
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-
-    if (active.id !== over?.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active?.id);
-        const newIndex = items.indexOf(over?.id ?? "");
-
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  }
 }
