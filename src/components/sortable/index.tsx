@@ -59,9 +59,7 @@ export function Sortable() {
         </div>
       </SortableContext>
 
-      <DragOverlay>
-        {activeID && <SortableItem id={activeID} isOverlay />}
-      </DragOverlay>
+      <DragOverlay>{activeID && <SortableItem id={activeID} />}</DragOverlay>
     </DndContext>
   );
 }

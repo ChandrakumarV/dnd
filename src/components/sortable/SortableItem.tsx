@@ -4,10 +4,9 @@ import { CSS } from "@dnd-kit/utilities";
 
 interface SortableItemProps {
   id: UniqueIdentifier;
-  isOverlay?: boolean;
 }
 
-export function SortableItem({ id, isOverlay = false }: SortableItemProps) {
+export function SortableItem({ id }: SortableItemProps) {
   const {
     attributes,
     listeners,
@@ -29,11 +28,7 @@ export function SortableItem({ id, isOverlay = false }: SortableItemProps) {
       style={style}
       {...attributes}
       {...listeners}
-      className={`flex h-12 w-32 items-center justify-center rounded-md border transition-all ${
-        isDragging || isOverlay
-          ? "border-gray-500 bg-gray-300 dark:border-gray-600 dark:bg-gray-700"
-          : "border-gray-400 bg-gray-100 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
-      }`}
+      className={`bg-background flex h-12 w-32 items-center justify-center rounded-md transition-all`}
     >
       {id}
     </div>
