@@ -52,7 +52,7 @@ export function Sortable() {
       onDragStart={(e) => setActiveID(e.active.id)}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        <div className="flex flex-col gap-2 rounded-lg bg-gray-100 p-4 shadow-md">
+        <div className="flex flex-col gap-2 rounded-lg bg-gray-200 p-4 dark:bg-gray-900">
           {items.map((id) => (
             <SortableItem key={id} id={id} />
           ))}

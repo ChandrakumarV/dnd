@@ -2,28 +2,25 @@ import { UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-export function SortableItem({
-  id,
-  isOverlay = false,
-}: {
+interface SortableItemProps {
   id: UniqueIdentifier;
   isOverlay?: boolean;
-}) {
+}
+
+export function SortableItem({ id, isOverlay = false }: SortableItemProps) {
   const {
     attributes,
-    isDragging,
     listeners,
     setNodeRef,
     transform,
     transition,
+    isDragging,
   } = useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition: isDragging ? "none" : transition,
-    opacity: isDragging ? 0.5 : 1,
-    zIndex: isOverlay ? 1000 : "auto",
-    backgroundColor: isDragging ? "#e0e7ff" : "#ffffff",
+    transition,
+    opacity: isDragging ? 0.6 : 1,
   };
 
   return (
@@ -32,7 +29,11 @@ export function SortableItem({
       style={style}
       {...attributes}
       {...listeners}
-      className="flex h-12 w-40 items-center justify-center rounded-lg border bg-white shadow-sm transition-all hover:bg-gray-50"
+      className={`flex h-12 w-32 items-center justify-center rounded-md border transition-all ${
+        isDragging || isOverlay
+          ? "border-gray-500 bg-gray-300 dark:border-gray-600 dark:bg-gray-700"
+          : "border-gray-400 bg-gray-100 hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+      }`}
     >
       {id}
     </div>
